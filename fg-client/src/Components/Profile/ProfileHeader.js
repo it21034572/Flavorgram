@@ -205,9 +205,6 @@ export const ProfileHeader = () =>{
                     <ul className="flex px-5 py-1.5">
                         <li className="px-3 font-semibold text-gray-600"><a href="#">Posts
                         </a></li>
-                        <li className="px-3 font-semibold text-gray-600"><a href="#">Following
-                        </a></li>
-                        <li className="px-3 font-semibold text-gray-600"><a href="#">Followers</a></li>
                         {/*<li className="px-3 font-semibold text-gray-600"><a href="#">Photos</a></li>
                         <li className="px-3 font-semibold text-gray-600"><a href="#">Story Archive</a></li>
                         <li className="px-3 font-semibold text-gray-600"><a href="#">More</a></li>*/}
@@ -217,12 +214,6 @@ export const ProfileHeader = () =>{
                             <button className="bg-blue-600 px-5 py-1 rounded-lg text-white font-semibold">
                                 <i className="bx bx-plus-circle text-xl mr-2"></i>
                                 Add Post
-                            </button>
-                        </li>
-                        <li className="px-2 font-semibold">
-                            <button className="bg-blue-600 px-5 py-1 rounded-lg text-white font-semibold">
-                                <i className="bx bx-plus-circle text-xl mr-2"></i>
-                                Add to Story
                             </button>
                         </li>
                         <li className="px-2 font-semibold">

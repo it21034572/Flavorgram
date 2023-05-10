@@ -84,71 +84,7 @@ const Profile = (props) => {
                   </div>
                   {/* // END INTRO */}
 
-                  {/* // PHOTOS */}
-                  <div className="mr-12 mt-4">
-                    <div
-                      className="p-4 shadow rounded-lg bg-white w-80"
-                      id="intro"
-                    >
-                      <div className="flex justify-between">
-                        <h1 className="font-bold text-xl">Photos</h1>
-                        <a href="#" className="text-lg text-blue-700">
-                          See All Photos
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  {/* // END PHOTOS */}
-
-                  {/* // FRIENDS */}
-                  <div className="mr-12 mt-4">
-                    <div
-                      className="p-4 shadow rounded-lg bg-white w-80"
-                      id="intro"
-                    >
-                      {/* Header */}
-                      <div className="flex justify-between">
-                        <h1 className="font-bold text-xl">Friends</h1>
-                        <Link
-                          to="/friends/myId"
-                          className="text-lg text-blue-700 hover:bg-blue-200"
-                        >
-                          See All Friends
-                        </Link>
-                      </div>
-                      {/* List */}
-                      <div className="">
-                        <p className="text-base text-gray-400">1000 friends</p>
-                        <div className="grid grid-cols-3 gap-1">
-                          <div className="bg-white p-0.5">
-                            <img
-                              src="https://i.insider.com/5c8936d026c84b24b711d224?width=700"
-                              className="w-24 h-24 rounded-md mt-2 cursor-pointer"
-                            />
-                            <Link
-                              to={`/profile/friendId`}
-                              className="font-semibold text-sm"
-                            >
-                              Friend FullName
-                            </Link>
-                          </div>
-                          <div className="bg-white p-0.5">
-                            <img
-                              src="https://i.insider.com/5c8936d026c84b24b711d224?width=700"
-                              className="w-24 h-24 rounded-md mt-2 cursor-pointer"
-                            />
-                            <Link
-                              to={`/profile/friendId`}
-                              className="font-semibold text-sm"
-                            >
-                              Friend FullName
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/* // END FRIENDS */}
+                  
                 </div>
                 {/* END LEFT */}
 
