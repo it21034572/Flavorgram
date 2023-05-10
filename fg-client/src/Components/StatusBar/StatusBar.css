@@ -1,0 +1,80 @@
+.statusbar_container {
+    height: 120px;
+    width: 615px;
+    background-color: white;
+    border: 1px solid #dbdbdb;
+    margin-top: 25px;
+    display: flex;
+}
+
+.statusbar_container::-webkit-scrollbar {
+    display: none;
+}
+
+.statusbar_status {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-position: center;   
+    background-size: cover;
+    border: 3px solid #DF3958;
+}
+
+.status {
+    margin: 25px 18px;
+}
+
+.statusbar_text {
+    font-size: 12px;
+    max-width: 60px;
+    overflow-x: hidden;
+    text-align: center;
+    
+}
+
+.post_reactimage {
+    width: 25px;
+    margin: 5px;
+}
+
+.statusbar__upload {
+    margin: 25px 10px 30px 30px;
+}
+
+.fileupload > input {
+    display: none;
+}
+
+.upload_button{
+    margin: 40px;
+    background-color: #f05d38;
+    color: white;
+    font-weight: 400;
+    border: 0px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.upload_textbox{
+    margin: 20px 40px;
+    border-bottom: rgb(173, 172, 172);
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+}
+
+.upload_preview{
+    padding: 0px 40px;
+    padding-top: 0px;
+}
+
+.upload_header{
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 20px; 
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
