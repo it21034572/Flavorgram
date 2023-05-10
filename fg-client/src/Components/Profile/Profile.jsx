@@ -1,12 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
-//import "./Profile.css"
 import { Link, useNavigate, useParams } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import Post from "../Posts/Post";
-// import RightBar from "../RightBar/RightBar";
-// import FollowUnfollowBtn  from "./followUnfollowbtn";
-// import EditProfileBtn from "./editProfilebtn";
-// import CreatePostBtn from "./createPostbtn";
 import ProfileHeader from "./ProfileHeader";
 import axios from "axios";
 import { useAuth } from "../Authentication/auth";
@@ -14,22 +9,17 @@ import Cookies from "universal-cookie";
 import { Avatar, Dialog } from "@material-ui/core";
 
 const Profile = (props) => {
-  //Status is the state variable and setStatus
-  //is the function to update the state variable
+
   const cookies = new Cookies();
   const [user, setUser] = useState({});
-  const [_id, setUser_id] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [profilePic, setProfilePic] = useState();
-  const [bio, setBio] = useState("");
+  // const [_id, setUser_id] = useState("");
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setLastName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [profilePic, setProfilePic] = useState();
+  // const [bio, setBio] = useState("");
 
-  const [state, setState] = useState(false);
-
-  // useEffect(()=>{
-  //     console.log()
-  // })
+  // const [state, setState] = useState(false);
 
   const auth = useAuth();
   let options = {};
@@ -87,8 +77,8 @@ const Profile = (props) => {
                       id="intro"
                     >
                       <h1 className="font-bold text-xl">Bio</h1>
-                      <h2 className="font- text-xl">Email : {user.email}</h2>
-                      <h2 className="font- text-xl">Name : {user.firstName}</h2>
+                      <h2 className="font- text-xl">Username : {user.username}</h2>
+                      <h2 className="font- text-xl">Name : {user.firstName + user.lastName}</h2>
                       <h2 className="font- text-xl">Bio : {user.bio}</h2>
                     </div>
                   </div>

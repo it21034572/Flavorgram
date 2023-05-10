@@ -23,8 +23,8 @@
     "react-scripts": "^5.0.1",
     "react-spinners": "^0.13.8",
     "react-toastify": "^9.1.2",
-    "timeago.js": "^4.0.2",
     "reactstrap": "^9.1.9",
+    "timeago.js": "^4.0.2",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^2.1.4",
     "yup": "^1.1.1"
