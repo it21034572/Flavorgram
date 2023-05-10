@@ -85,10 +85,14 @@ export const ProfileHeader = () =>{
             .delete("http://localhost:8081/api/users/" + auth.user.user_id, options)
             .then(() => {
                 getUser();
-                navigate("/profile")
+                navigate("/register")
                 alert("Profile Deleted Successfully");
                 setModal(false);
+                console.log(auth.user.user_id + "Deleted succesfully");
             })
+            .catch((err) => {
+                console.log(err);
+            });   
     }
 
     return(
