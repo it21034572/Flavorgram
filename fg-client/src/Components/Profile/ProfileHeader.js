@@ -202,7 +202,9 @@ export const ProfileHeader = ({ setModal, modal }) => {
       </div>
       {/* // INFOS */}
       <div className="flex justify-center flex-col mt-5 mb-3.5">
-        <h1 className="text-center font-bold text-3xl">Can Canbolat</h1>
+        <h1 className="text-center font-bold text-3xl">
+          {firstname + " " + lastname}
+        </h1>
         <a href="#" className="text-center text-blue-700 font-semibold">
           Add Bio
         </a>

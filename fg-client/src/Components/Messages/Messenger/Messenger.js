@@ -1,4 +1,4 @@
-import React, { useEffect, useState , useRef} from "react";
+import React, { useEffect, useState, useRef } from "react";
 import NavBar from "../../NavBar/NavBar";
 import "./Messenger.css";
 import Conversations from "../Conversations/Conversations";
@@ -6,10 +6,9 @@ import Chat from "../Chats/Chat";
 import { useAuth } from "../../Authentication/auth";
 import Cookies from "universal-cookie";
 import { FaEdit, FaPaperPlane, FaPlane, FaTrash } from "react-icons/fa";
-import { useNavigate , Link } from "react-router-dom"; 
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { IoClose, IoCloseCircle, IoCloseCircleSharp } from "react-icons/io5";
-
 
 const Messenger = () => {
   const cookies = new Cookies();
@@ -18,11 +17,10 @@ const Messenger = () => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const scrollRef = useRef();
-  const [oneMessage , setOneMessage] = useState([]);
-  const [editedMsg,setEditedMesg] = useState("");
+  const [oneMessage, setOneMessage] = useState([]);
+  const [editedMsg, setEditedMesg] = useState("");
   const navigate = useNavigate();
 
-  
   if (!auth.social) {
     options = {
       headers: {
@@ -78,49 +76,48 @@ const Messenger = () => {
       .catch((err) => {
         console.log(err);
       });
-      setCreate(!create);
+    setCreate(!create);
   };
 
-  useEffect (() => {
-    scrollRef.current?.scrollIntoView({behavior : "smooth"});
-  },[messages])
-
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const [deleted, setDeleted] = useState(false);
-  const [create , setCreate] = useState(false);
+  const [create, setCreate] = useState(false);
 
-  
   const deleteMessage = async (id) => {
-  
     console.log(id);
-      await axios
-        .delete("http://localhost:8081/messages/" + id, options)
-        .then(() => {
-          getMessages();
-          setDeleted(!deleted);
-          // navigate('/messenger');
-        })
-        .catch((err) => {
-          alert(err.message);
-        });  
-  } 
+    await axios
+      .delete("http://localhost:8081/messages/" + id, options)
+      .then(() => {
+        getMessages();
+        setDeleted(!deleted);
+        // navigate('/messenger');
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
 
-useEffect(() => {
-  getMessages();
-}, [deleted,create]);
+  useEffect(() => {
+    getMessages();
+  }, [deleted, create]);
 
-const goBack = () => {
-  navigate('/sample');
-}
+  const goBack = () => {
+    navigate("/home");
+  };
 
   return (
     <>
       <NavBar />
       <div className="messenger">
         <div className="chatMenu">
-        <button onClick={() => goBack()}><IoCloseCircleSharp/></button>
+          <button onClick={() => goBack()}>
+            <IoCloseCircleSharp />
+          </button>
           <div className="ChatMenuWrapper">
-            {/* <input placeholder="Search for user..." className="chatMenuInput" /> */} 
+            {/* <input placeholder="Search for user..." className="chatMenuInput" /> */}
             <Conversations />
           </div>
         </div>
@@ -129,23 +126,38 @@ const goBack = () => {
             <div className="chatBoxTop">
               {messages.map((m) => (
                 <div ref={scrollRef}>
-                <Chat chat={m} own={m.sender.id === user} />
-                <span
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-              padding: "5px",
-            }}
-          >
-            <Link to={`/messenger/editMessage/${JSON.stringify(m.message_id).replace(/\"/g, '')}`}>
-            <button hidden={m.sender.id==user?false:true} style={{ color:"black",width:"10px", height:"20px" , marginRight: "10px" }}>
-              <FaEdit/>
-            </button>
-            </Link>
-            <button hidden={m.sender.id==user?false:true} onClick={() => deleteMessage(m.message_id)}>
-              <FaTrash />
-            </button>
-          </span>
+                  <Chat chat={m} own={m.sender.id === user} />
+                  <span
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-end",
+                      padding: "5px",
+                    }}
+                  >
+                    <Link
+                      to={`/messenger/editMessage/${JSON.stringify(
+                        m.message_id
+                      ).replace(/\"/g, "")}`}
+                    >
+                      <button
+                        hidden={m.sender.id == user ? false : true}
+                        style={{
+                          color: "black",
+                          width: "10px",
+                          height: "20px",
+                          marginRight: "10px",
+                        }}
+                      >
+                        <FaEdit />
+                      </button>
+                    </Link>
+                    <button
+                      hidden={m.sender.id == user ? false : true}
+                      onClick={() => deleteMessage(m.message_id)}
+                    >
+                      <FaTrash />
+                    </button>
+                  </span>
                 </div>
               ))}
             </div>
@@ -156,10 +168,9 @@ const goBack = () => {
                 onChange={(e) => setNewMessage(e.target.value)}
                 value={newMessage}
               />
-                <button className="chatSubmitButton" onClick={submitMessage}>
-                <FaPaperPlane/>
+              <button className="chatSubmitButton" onClick={submitMessage}>
+                <FaPaperPlane />
               </button>
-                            
             </div>
           </div>
         </div>

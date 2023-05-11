@@ -23,9 +23,11 @@ export default function Sample() {
       {isCommentOpen != null && (
         <Comment
           setIsCommentOpen={setIsCommentOpen}
-          postId={"post_id_1"}
+          postId={"645cc6ec39dcfa1ffcb9e2fc"}
           postAuthor={auth.user.id}
-          commentResourceLink={"http://localhost:8081/comment?post=post_id_1"}
+          commentResourceLink={
+            "http://localhost:8081/comment?post=645cc6ec39dcfa1ffcb9e2fc"
+          }
         />
       )}
     </div>
