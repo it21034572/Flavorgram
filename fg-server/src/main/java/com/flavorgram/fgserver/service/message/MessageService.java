@@ -1,6 +1,7 @@
 package com.flavorgram.fgserver.service.message;
 import java.util.List;
 
+import org.springframework.hateoas.EntityModel;
 import org.springframework.stereotype.Service;
 
 import com.flavorgram.fgserver.model.message.Message;
@@ -11,7 +12,7 @@ public interface MessageService {
 
     Message updateMessage(Message message);
 
-    List<Message> getAllMessage();
+    List<EntityModel<Message>> getAllMessage();
 
     Message getMessageById(String messageId);
 
