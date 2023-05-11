@@ -197,9 +197,9 @@ export const ProfileHeader = ({ setModal, modal }) => {
         style={{ height: "348px" }}
       >
         <div className="flex flex-col">
-          <div
-            className="md:relative bg-gray-100 md:rounded-bl-lg md:rounded-br-lg
-                        bg-gradient-to-b from-gray-100 via-gray-100 to-gray-400"
+        <div
+            className="md:relative bg-yellow-100 md:rounded-bl-lg md:rounded-br-lg
+                      bg-blue-300"
             style={{ width: "940px", height: "300px" }}
           >
             {/* // cover photo */}
