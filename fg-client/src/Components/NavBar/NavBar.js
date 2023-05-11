@@ -51,6 +51,11 @@ class NavBar extends Component {
                   style={{ maxWidth: "25px", maxHeight: "25px" }}
                 />
               </Link>
+              <Link to="/logout">
+                <button className="danger" style={{ "margin-top": ".7rem" }}>
+                  Logout
+                </button>
+              </Link>
             </Grid>
             <Grid item xs={1}></Grid>
           </Grid>
