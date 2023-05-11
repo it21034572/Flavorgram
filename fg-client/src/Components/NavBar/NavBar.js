@@ -10,6 +10,7 @@ import Avatar from "@material-ui/core/Avatar";
 import pp from "../../images/pp1.png";
 import { Link } from "react-router-dom";
 
+
 class NavBar extends Component {
   constructor(props) {
     super(props);
@@ -22,12 +23,12 @@ class NavBar extends Component {
           <Grid container>
             <Grid item xs={2}></Grid>
 
-            <Grid item xs={3}>
-              <Link to="/home">
-                <img className="navbar_logo" src={app_logo} width="220px" />
-              </Link>
-            </Grid>
-
+              <Grid item xs={3}>
+                <Link to = "/home">
+                  <img className="navbar_logo" src={app_logo} width="220px" />
+                </Link>
+              </Grid>
+            
             <Grid item xs={3}>
               <input
                 text="text"
