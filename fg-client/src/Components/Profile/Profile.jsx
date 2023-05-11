@@ -79,7 +79,7 @@ const Profile = (props) => {
                     >
                       <h1 className="font-bold text-xl">Bio</h1>
                       <h2 className="font- text-xl">
-                        Username : {user.username}
+                        Username : {auth.user.username}
                       </h2>
                       <h2 className="font- text-xl">
                         Name : {user.firstName + " " + user.lastName}
