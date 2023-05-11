@@ -1,5 +1,7 @@
 package com.flavorgram.fgserver.dto.user;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +15,6 @@ public class userRequest {
   private String firstName;
   private String lastName;
   private String username;
-  private String profilePic;
+  private byte[] profilePic;
   private String bio;
-
 }

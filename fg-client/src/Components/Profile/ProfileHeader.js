@@ -13,9 +13,14 @@ export const ProfileHeader = ({ setModal, modal }) => {
   const [user, setUser] = useState({});
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
-  const [username, setUserName] = useState("");
+  //const [username, setUserName] = useState("");
   const [bio, setBio] = useState("");
-
+  const [profilePic, setProfilePic] = useState(null);
+  
+  // const handleProfilePicChange = (event) => {
+  //   setProfilePic(event.target.files[0]);
+  // };
+  
   const auth = useAuth();
   let options = {};
 
@@ -46,8 +51,8 @@ export const ProfileHeader = ({ setModal, modal }) => {
         setUser(res.data);
         setFirstName(res.data.firstName);
         setLastName(res.data.lastName);
-        setUserName(res.data.username);
         setBio(res.data.bio);
+        setProfilePic(res.data.profilePic);
 
         console.log("Profile: " + auth.user.user_id);
         console.log(res.data);
@@ -61,8 +66,8 @@ export const ProfileHeader = ({ setModal, modal }) => {
     const newUserDetails = {
       firstName: firstname,
       lastName: lastname,
-      username: username,
       bio: bio,
+      profilePic: profilePic
     };
 
     await axios
@@ -135,12 +140,12 @@ export const ProfileHeader = ({ setModal, modal }) => {
               </Col>
               <Col lg={12}>
                 <div>
-                  <label htmlFor="username">Username</label>
+                  <label htmlFor="profilePic">Choose a Profile Picture</label>
                   <input
-                    type="text"
+                    type="file"
                     className="form-control"
-                    value={username}
-                    onChange={(e) => setUserName(e.target.value)}
+                    onChange={(e) => setProfilePic(e.target.files[0])}
+                    accept=".png,.svg,.jpg"
                   />
                 </div>
                 <br />
@@ -149,7 +154,7 @@ export const ProfileHeader = ({ setModal, modal }) => {
                 <div>
                   <label htmlFor="bio">Bio</label>
                   <input
-                    type="text"
+                    type="textarea"
                     className="form-control"
                     value={bio}
                     onChange={(e) => setBio(e.target.value)}
@@ -183,11 +188,7 @@ export const ProfileHeader = ({ setModal, modal }) => {
         style={{ height: "348px" }}
       >
         <div className="flex flex-col">
-          <div
-            className="md:relative bg-gray-100 md:rounded-bl-lg md:rounded-br-lg
-                        bg-gradient-to-b from-gray-100 via-gray-100 to-gray-400"
-            style={{ width: "940px", height: "300px" }}
-          >
+          
             {/* // cover photo */}
             <div className="">
               {/* profile photo */}
@@ -197,7 +198,7 @@ export const ProfileHeader = ({ setModal, modal }) => {
                 style={{ width: "168px", height: "168px" }}
               />
             </div>
-          </div>
+          
         </div>
       </div>
       {/* // INFOS */}
@@ -205,9 +206,6 @@ export const ProfileHeader = ({ setModal, modal }) => {
         <h1 className="text-center font-bold text-3xl">
           {firstname + " " + lastname}
         </h1>
-        <a href="#" className="text-center text-blue-700 font-semibold">
-          Add Bio
-        </a>
         <hr className="full flex self-center w-2/3 mt-2" />
       </div>
       {/* // END INFOS */}

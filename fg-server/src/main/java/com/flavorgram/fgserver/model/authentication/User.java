@@ -34,8 +34,8 @@ public class User implements UserDetails {
   private List<String> following;
   private List<User> UserFollows;// new
   private List<User> Userfollowings;// new
-  // private MultipartFile profilePic;
   private byte[] profilePic;
+  //private MultipartFile profilePic;
   private String bio;
   // private List<SuggestedUser> suggestedUsers;
 
@@ -99,11 +99,11 @@ public class User implements UserDetails {
   // return profilePic;
   // }
 
-  public void setProfilePicture(byte[] profilePicture) {
+  public void setProfilePic(byte[] profilePicture) {
     this.profilePic = profilePicture;
   }
 
-  public byte[] getProfilePicture() {
+  public byte[] getProfilePic() {
     return profilePic;
   }
 

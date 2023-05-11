@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 //import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 //import org.springframework.web.multipart.MultipartFile;
 //import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.flavorgram.fgserver.dto.user.userRequest;
 import com.flavorgram.fgserver.exception.ResourceNotFoundException;
@@ -56,8 +59,11 @@ public class UserController {
     }
 
     @PutMapping("/users/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable("id") String id, @RequestBody userRequest ur)
-            throws IOException {
+    public ResponseEntity<User> updateUser(@PathVariable("id") String id, 
+        @RequestParam("profilePic") MultipartFile profilePic,
+        @RequestBody userRequest ur
+        )
+            throws IOException, java.io.IOException {
         User existingUser = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
 
@@ -66,6 +72,13 @@ public class UserController {
         existingUser.setLastName(ur.getLastName());
         existingUser.setBio(ur.getBio());
         log.info(ur.getBio());
+
+        if(profilePic != null && !profilePic.isEmpty()){
+            if(!profilePic.getContentType().startsWith("image/")) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid Image format");
+            }
+            existingUser.setProfilePic(profilePic.getBytes());
+        }
 
         User updatedUser = userRepository.save(existingUser);
         return ResponseEntity.ok().body(updatedUser);

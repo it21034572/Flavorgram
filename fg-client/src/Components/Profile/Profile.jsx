@@ -74,17 +74,19 @@ const Profile = (props) => {
                   {/* // INTRO */}
                   <div className="mr-12 mt-4">
                     <div
-                      className="p-4 shadow rounded-lg bg-white w-80"
+                      className="p-4 shadow rounded-lg bg-white w-180"
                       id="intro"
                     >
-                      <h1 className="font-bold text-xl">Bio</h1>
+                      <h1 className="font-bold text-xl"><b>Who?What?Why?</b></h1>
                       <h2 className="font- text-xl">
-                        Username : {user.username}
+                        <b>Username - </b> {auth.user.username}
                       </h2>
                       <h2 className="font- text-xl">
-                        Name : {user.firstName + " " + user.lastName}
+                      <b>Name - </b> {user.firstName + " " + user.lastName}
                       </h2>
-                      <h2 className="font- text-xl">Bio : {user.bio}</h2>
+                      <h2 className="font- text-xl">
+                      <b>Bio - </b> {user.bio}
+                      </h2>
                     </div>
                   </div>
                   {/* // END INTRO */}
