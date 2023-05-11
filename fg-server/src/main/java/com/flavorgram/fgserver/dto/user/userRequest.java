@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class userRequest {
   private String firstName;
   private String lastName;
+  private String username;
   private String profilePic;
   private String bio;
 

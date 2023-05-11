@@ -22,7 +22,6 @@ export default function NavBar(props) {
       <div className="navbar_barContent">
         <Grid container>
           <Grid item xs={2}></Grid>
-
           <Grid item xs={3}>
             <Link to="/home">
               <img className="navbar_logo" src={app_logo} width="220px" />
