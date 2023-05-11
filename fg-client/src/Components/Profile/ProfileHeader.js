@@ -50,6 +50,7 @@ export const ProfileHeader = ({ setModal, modal }) => {
         setBio(res.data.bio);
 
         console.log("Profile: " + auth.user.user_id);
+        console.log(res.data);
       })
       .catch((err) => {
         alert(err.message);
@@ -74,6 +75,7 @@ export const ProfileHeader = ({ setModal, modal }) => {
         getUser();
         setModal(false);
         toast.success("Your profile has been updated");
+        //console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -91,6 +93,8 @@ export const ProfileHeader = ({ setModal, modal }) => {
         toast.success("Your account has been deleted");
         console.log(auth.user.user_id + "Deleted succesfully");
         setModal(false);
+
+        //console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
