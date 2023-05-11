@@ -2,6 +2,7 @@ package com.flavorgram.fgserver.controller.message;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,8 +22,8 @@ public class MessageController {
     private MessageService messageService;
 
     @GetMapping("/messages")
-    public ResponseEntity<List<Message>> getAllMessage() {
-        return ResponseEntity.ok().body(this.messageService.getAllMessage());
+    public ResponseEntity<List<EntityModel<Message>>> getAllMessage() {
+        return ResponseEntity.ok().body(messageService.getAllMessage());
     }
 
     @GetMapping("/messages/{id}")
