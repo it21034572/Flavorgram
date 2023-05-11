@@ -1,220 +1,72 @@
-import { Avatar, Dialog } from "@material-ui/core";
+import React, { Component } from "react";
 import "./MainPage.css";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { useAuth } from "../Authentication/auth";
-import Cookies from "universal-cookie";
-import { Link, useNavigate } from "react-router-dom";
-import { storage } from "../StatusBar/config/firebase";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import uploadImage from "../../images/upload.png";
-import love from "../../images/love.svg";
-import comment from "../../images/comment.svg";
-import share from "../../images/share.svg";
+import Post from "../Posts/Post";
 
-function MainPage() {
-  const [post, setPost] = useState([]); //Post is the state variable and setPost is the function to update the state variable
-  const [user_id, setUser_id] = useState("");
-  const cookies = new Cookies();
-  const [show, setShow] = useState(false);
-  const [uploadImg, setUploadImg] = useState(null);
-  const [image, setImage] = useState();
-  const navigate = useNavigate();
-  const [caption, setCaption] = useState("");
-  var [timestamp, setTimestamp] = useState("");
-
-  const [state, setState] = useState(false);
-
-  var currentDate = new Date().toISOString();
-  const objectId = null;
-
-  const auth = useAuth();
-  let options = {};
-
-  if (!auth.social) {
-    options = {
-      headers: {
-        Authorization: "Bearer " + cookies.get("token"),
-        "Content-type": "application/json",
-      },
-    };
-  } else {
-    options = {
-      withCredentials: true,
+class MainPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      postArray: [],
     };
   }
 
-  const getPost = async () => {
-    //getPost is the function to get the data from the backend
-    if (localStorage.getItem("user_id")) {
-      axios
-        .get("http://localhost:8081/post", options)
-        .then((res) => {
-          setPost(res.data); //setPost is used to update the state variable
-          setUser_id(res.data.user_id);
-          console.log(res.data);
-        })
-        .catch((err) => {
-          alert(err.message);
-        });
-    } else {
-      setPost(null);
-    }
+  componentDidMount() {
+    this.getPost();
+  }
+
+  getPost = () => {
+    //API
+    let data = [
+      {
+        postId: "1234",
+        userName: "thrinith.shevon",
+        postImageURL:
+          "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=768,574",
+        timeStamp: "12345",
+        likes: "1234",
+      },
+      {
+        postId: "4567",
+        userName: "hiroshan",
+        postImageURL:
+          "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?cs=srgb&dl=pexels-ash-376464.jpg&fm=jpg",
+        timeStamp: "12345",
+        likes: "2399",
+      },
+      {
+        postId: "5634",
+        userName: "shafa",
+        postImageURL:
+          "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8&w=1000&q=80",
+        timeStamp: "12345",
+        likes: "2000",
+      },
+      {
+        postId: "6738",
+        userName: "sarah",
+        postImageURL:
+          "https://www.teenaagnel.com/wp-content/uploads/2019/12/food-photography-in-dubai.jpg",
+        timeStamp: "12345",
+        likes: "1289",
+      },
+    ];
+    this.setState({ postArray: data });
   };
 
-  const deletePost = async (id) => {
-    await axios
-      .delete("http://localhost:8081/post/" + id, options)
-      .then(() => {
-        getPost();
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
-  };
-
-  useEffect(() => {
-    //useEffect is used to call the function getStock
-    if (!localStorage.getItem("user_id")) {
-      localStorage.setItem("user_id", auth.user.id); //<-key and value is passed, user id gotten from login
-    }
-    getPost();
-  }, [state]);
-
-  const openDialog = (event) => {
-    setImage(event.target.files[0]);
-    setUploadImg(URL.createObjectURL(event.target.files[0]));
-    setShow(true);
-  };
-
-  const handleClose = () => {
-    setShow(false);
-  };
-
-  const uploadToFirebase = async () => {
-    const imageRef = ref(storage, `images/${image.name}`);
-    console.log(imageRef);
-
-    timestamp = currentDate;
-
-    await uploadBytes(imageRef, image)
-      .then(() => {
-        console.log("Uploaded images");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    await getDownloadURL(ref(storage, `images/${image.name}`))
-      .then(async (url) => {
-        console.log(url);
-
-        // setUser_id()
-
-        const newPost = {
-          // post_id:"12345",
-          user_id: { id: localStorage.getItem("user_id").toString() },
-          postPath: url,
-          caption,
-          timestamp,
-        };
-        // console.log(newPost);
-        await axios
-          .post("http://localhost:8081/post", newPost, options)
-          .then(() => {
-            // getStatus();
-            setState(!state);
-            setShow(false);
-            // navigate("/home");
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const currentTime = new Date();
-
-  const filteredItems = post.filter((item) => {
-    const itemTime = new Date(item.timestamp);
-    const timeDifference = currentTime - itemTime;
-    const timeThreshold = 24 * 60 * 60 * 1000; // 30 minutes in milliseconds
-    return timeDifference < timeThreshold;
-  });
-
-  return (
-    <div>
-      <Dialog
-        onClose={handleClose}
-        style={{ backgroundColor: "black" }}
-        aria-labelledby="simple-dialog-title"
-        open={show}
-      >
-        <div className="upload_header">Add Post</div>
-        <input
-          type="text"
-          className="upload_textbox"
-          placeholder="Enter a caption...."
-          onChange={(e) => {
-            setCaption(e.target.value);
-          }}
-        />
-        <img src={uploadImg} className="upload_preview" />
-        <input
-          type="button"
-          value="Share Post"
-          className="upload_button"
-          onClick={(event) => uploadToFirebase(event)}
-        />
-      </Dialog>
-
-      <div className="mainpage__container">
-        <div className="mainpage__divider"></div>
-        <div className="fileupload">
-          <label for="file-upload-post">
-            <img className="mainpage__uploadicon" src={uploadImage} />
-          </label>
-          <input
-            type="file"
-            hidden
-            id="file-upload-post"
-            onChange={(event) => openDialog(event)}
+  render() {
+    return (
+      <div>
+        {this.state.postArray.map((item, index) => (
+          <Post
+            id={item.postId}
+            userName={item.userName}
+            postImage={item.postImageURL}
+            likes={item.likes}
           />
-        </div>
-        <div className="mainpage__divider"></div>
-        {console.log(post)}
+        ))}
       </div>
-      <div className="post_container">
-        {filteredItems &&
-          filteredItems.map((item, index) => (
-            <div>
-              {/* <Link to={`/status/viewOne/${JSON.stringify(item.status_id).replace(/\"/g, '')}`}></Link> */}
-
-              <div className="post">
-                <div className="post_header">
-                  <div className="post_username">
-                    {/* {`${item.user_id.username}`} */}thrinith.shevon
-                  </div>
-                </div>
-                <div
-                  className="postContainer_post"
-                  style={{
-                    backgroundImage: `url(${item.postPath})`,
-                    backgroundSize: `cover`,
-                  }}
-                />
-                <div className="post_footer">
-                  <div className="post_caption">{`${item.caption}`}</div>
-                </div>
-              </div>
-            </div>
-          ))}
-      </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default MainPage;
