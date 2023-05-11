@@ -48,8 +48,7 @@ export const ProfileHeader = ({ setModal, modal }) => {
         setLastName(res.data.lastName);
         setUserName(res.data.username);
         setBio(res.data.bio);
-
-        console.log("Profile: " + auth.user.user_id);
+        console.log(res.data);
       })
       .catch((err) => {
         alert(err.message);

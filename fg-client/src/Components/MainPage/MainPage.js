@@ -11,6 +11,9 @@ import uploadImage from "../../images/upload.png";
 import love from "../../images/love.svg";
 import comment from "../../images/comment.svg";
 import share from "../../images/share.svg";
+import { FaHeart, FaRegComment } from "react-icons/fa";
+import { RiHeart3Line, RiHeart3Fill, RiChat1Line } from "react-icons/ri";
+import Comment from "../Comment/Comment";
 
 function MainPage() {
   const [post, setPost] = useState([]); //Post is the state variable and setPost is the function to update the state variable
@@ -22,6 +25,7 @@ function MainPage() {
   const navigate = useNavigate();
   const [caption, setCaption] = useState("");
   var [timestamp, setTimestamp] = useState("");
+  const [isCommentOpen, setIsCommentOpen] = useState();
 
   const [state, setState] = useState(false);
 
@@ -208,11 +212,37 @@ function MainPage() {
                 />
                 <div className="post_footer">
                   <div className="post_caption">{`${item.caption}`}</div>
+                  <button
+                    className="post_comment"
+                    onClick={() =>
+                      setIsCommentOpen({
+                        title: item.caption,
+                        author: item.user_id.id,
+                        post_id: item.post_id,
+                      })
+                    }
+                  >
+                    <RiChat1Line />
+                  </button>
+                  {
+                    <button className="post_comment">
+                      <RiHeart3Line />
+                    </button>
+                  }
                 </div>
               </div>
             </div>
           ))}
       </div>
+      {isCommentOpen != null && (
+        <Comment
+          postTitle={isCommentOpen.title}
+          setIsCommentOpen={setIsCommentOpen}
+          postId={isCommentOpen.post_id}
+          postAuthor={isCommentOpen.author}
+          commentResourceLink={"http://localhost:8081/comment"}
+        />
+      )}
     </div>
   );
 }
