@@ -9,8 +9,8 @@ import Cookies from "universal-cookie";
 import { Avatar, Dialog } from "@material-ui/core";
 
 const Profile = (props) => {
-
   const cookies = new Cookies();
+  const [modal, setModal] = useState(false);
   const [user, setUser] = useState({});
   // const [_id, setUser_id] = useState("");
   // const [firstName, setFirstName] = useState("");
@@ -42,7 +42,7 @@ const Profile = (props) => {
       await getUser();
     }
     getUserDetails();
-  }, []);
+  }, [modal]);
 
   async function getUser() {
     await axios
@@ -61,7 +61,7 @@ const Profile = (props) => {
       <div className="h-screen">
         <div className="mt-14 shadow bg-white h-screen">
           {/* PROFILE HEADER */}
-          <ProfileHeader />
+          <ProfileHeader setModal={setModal} modal={modal} />
           {/* END PROFILE HEADER */}
 
           {/* // CONTENT */}
@@ -77,14 +77,16 @@ const Profile = (props) => {
                       id="intro"
                     >
                       <h1 className="font-bold text-xl">Bio</h1>
-                      <h2 className="font- text-xl">Username : {user.username}</h2>
-                      <h2 className="font- text-xl">Name : {user.firstName + user.lastName}</h2>
+                      <h2 className="font- text-xl">
+                        Username : {user.username}
+                      </h2>
+                      <h2 className="font- text-xl">
+                        Name : {user.firstName + user.lastName}
+                      </h2>
                       <h2 className="font- text-xl">Bio : {user.bio}</h2>
                     </div>
                   </div>
                   {/* // END INTRO */}
-
-                  
                 </div>
                 {/* END LEFT */}
 
