@@ -49,6 +49,7 @@ const Profile = (props) => {
       .get("http://localhost:8081/api/users/" + auth.user.user_id, options)
       .then((res) => {
         setUser(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         alert(err.message);
@@ -81,7 +82,7 @@ const Profile = (props) => {
                         Username : {user.username}
                       </h2>
                       <h2 className="font- text-xl">
-                        Name : {user.firstName + user.lastName}
+                        Name : {user.firstName + " " + user.lastName}
                       </h2>
                       <h2 className="font- text-xl">Bio : {user.bio}</h2>
                     </div>

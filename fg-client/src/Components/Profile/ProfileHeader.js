@@ -50,6 +50,7 @@ export const ProfileHeader = ({ setModal, modal }) => {
         setBio(res.data.bio);
 
         console.log("Profile: " + auth.user.user_id);
+        console.log(res.data);
       })
       .catch((err) => {
         alert(err.message);
@@ -74,6 +75,7 @@ export const ProfileHeader = ({ setModal, modal }) => {
         getUser();
         setModal(false);
         toast.success("Your profile has been updated");
+        //console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -91,6 +93,8 @@ export const ProfileHeader = ({ setModal, modal }) => {
         toast.success("Your account has been deleted");
         console.log(auth.user.user_id + "Deleted succesfully");
         setModal(false);
+
+        //console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -198,7 +202,9 @@ export const ProfileHeader = ({ setModal, modal }) => {
       </div>
       {/* // INFOS */}
       <div className="flex justify-center flex-col mt-5 mb-3.5">
-        <h1 className="text-center font-bold text-3xl">Can Canbolat</h1>
+        <h1 className="text-center font-bold text-3xl">
+          {firstname + " " + lastname}
+        </h1>
         <a href="#" className="text-center text-blue-700 font-semibold">
           Add Bio
         </a>
