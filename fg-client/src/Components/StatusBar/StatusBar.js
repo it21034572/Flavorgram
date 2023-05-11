@@ -155,7 +155,7 @@ function StatusBar() {
         aria-labelledby="simple-dialog-title"
         open={show}
       >
-        <div className="upload_header" style={{textAlign:"center", fontSize:"20px"}}>Add Story</div>
+        <div className="story_add_header" >Add Story</div>
         <textarea
           className="edit_add_textbox"
           placeholder="Enter a caption...." maxLength="100"

@@ -113,7 +113,7 @@ function StatusUpdate() {
         classname="upload_dialogbox"
         aria-labelledby="simple-dialog-title"
       >
-        <div className="upload_header">{user_id.username}</div>
+        <div className="upload_story_header">{user_id.username}</div>
         <button
           style={{
             fontSize: "40px",
