@@ -49,6 +49,7 @@ const Profile = (props) => {
       .get("http://localhost:8081/api/users/" + auth.user.user_id, options)
       .then((res) => {
         setUser(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         alert(err.message);
