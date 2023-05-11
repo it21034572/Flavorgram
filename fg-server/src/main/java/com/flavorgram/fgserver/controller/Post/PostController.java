@@ -3,6 +3,7 @@ package com.flavorgram.fgserver.controller.Post;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,28 +23,28 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @GetMapping("/posts")
-    public ResponseEntity<List<Post>> getAllPosts() {
+    @GetMapping("/post")
+    public ResponseEntity<List<EntityModel<Post>>> getAllPosts() {
         return ResponseEntity.ok().body(postService.getAllPosts());
     }
 
-    @GetMapping("/posts/{id}")
+    @GetMapping("/post/{id}")
     public ResponseEntity<Post> getPostById(@PathVariable String id) {
         return ResponseEntity.ok().body(postService.getPostById(id));
     }
 
-    @PostMapping("/posts")
+    @PostMapping("/post")
     public ResponseEntity<Post> createPost(@RequestBody Post post) {
         return ResponseEntity.ok().body(this.postService.createPost(post));
     }
 
-    @PutMapping("/posts/{id}")
+    @PutMapping("/post/{id}")
     public ResponseEntity<Post> updatePost(@PathVariable String id, @RequestBody Post post) {
-        post.setId(id);
+        post.setPost_id(id);
         return ResponseEntity.ok().body(this.postService.updatePost(post));
     }
 
-    @DeleteMapping("/posts/{id}")
+    @DeleteMapping("/post/{id}")
     public HttpStatus deletePost(@PathVariable String id) {
         this.postService.deletePost(id);
         return HttpStatus.OK;
