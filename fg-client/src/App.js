@@ -100,26 +100,24 @@ function App() {
             }
           />
 
-<Route exact path="/messenger/editMessage/:id" element={<RequireAuth><MessageEdit /></RequireAuth>} />
+          <Route
+            exact
+            path="/messenger/editMessage/:id"
+            element={
+              <RequireAuth>
+                <MessageEdit />
+              </RequireAuth>
+            }
+          />
 
           <Route exact path="/profile" element={<Profile />} />
           {/* <Route exact path="/settings" element={<Settings />} /> */}
           <Route exact path="/post" element={<Profile />} />
           <Route exact path="/status/viewOne/:id" element={<StatusPreview />} />
           <Route exact path="/status/update/:id" element={<StatusUpdate />} />
-          <Route 
-            exact 
-            path="/profile" 
-            element={
-            <Profile />
-            } />
-          
-          <Route 
-            exact 
-            path="/post" 
-            element={
-            <Profile />
-            } />
+          <Route exact path="/profile" element={<Profile />} />
+
+          <Route exact path="/post" element={<Profile />} />
         </Routes>
       </div>
       <ToastContainer

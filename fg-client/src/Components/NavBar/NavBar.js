@@ -8,6 +8,8 @@ import find from "../../images/find.svg";
 import react from "../../images/love.svg";
 import Avatar from "@material-ui/core/Avatar";
 import pp from "../../images/pp1.png";
+import { Link } from "react-router-dom";
+
 class NavBar extends Component {
   constructor(props) {
     super(props);
@@ -19,9 +21,13 @@ class NavBar extends Component {
         <div className="navbar_barContent">
           <Grid container>
             <Grid item xs={2}></Grid>
+
             <Grid item xs={3}>
-              <img className="navbar_logo" src={app_logo} width="220px" />
+              <Link to="/home">
+                <img className="navbar_logo" src={app_logo} width="220px" />
+              </Link>
             </Grid>
+
             <Grid item xs={3}>
               <input
                 text="text"
@@ -30,15 +36,26 @@ class NavBar extends Component {
               />
             </Grid>
             <Grid item xs={3} style={{ display: "flex" }}>
-              <img className="navbar_img" src={home} width="30px" />
-              <img className="navbar_img" src={message} width="30px" />
+              <Link to="/home">
+                <img className="navbar_img" src={home} width="30px" />
+              </Link>
+              <Link to="/messenger">
+                <img className="navbar_img" src={message} width="30px" />
+              </Link>
               <img className="navbar_img" src={find} width="30px" />
               <img className="navbar_img" src={react} width="30px" />
-              <Avatar
-                src={pp}
-                className="navbar_img"
-                style={{ maxWidth: "25px", maxHeight: "25px" }}
-              />
+              <Link to="/profile">
+                <Avatar
+                  src={pp}
+                  className="navbar_img"
+                  style={{ maxWidth: "25px", maxHeight: "25px" }}
+                />
+              </Link>
+              <Link to="/logout">
+                <button className="danger" style={{ "margin-top": ".7rem" }}>
+                  Logout
+                </button>
+              </Link>
             </Grid>
             <Grid item xs={1}></Grid>
           </Grid>
