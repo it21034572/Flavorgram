@@ -2,6 +2,7 @@ package com.flavorgram.fgserver.controller.Profile;
 
 import java.util.List;
 
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,10 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.server.ResponseStatusException;
+//import org.springframework.web.multipart.MultipartFile;
+//import org.springframework.web.server.ResponseStatusException;
 
 import com.flavorgram.fgserver.dto.user.userRequest;
 import com.flavorgram.fgserver.exception.ResourceNotFoundException;
@@ -36,9 +37,10 @@ public class UserController {
     private final UserRepository userRepository;
 
     @GetMapping("/users")
-    public ResponseEntity<List<User>> getUsers() {
-        List<User> users = userService.getUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+    public ResponseEntity<List<EntityModel<User>>> getUsers() {
+        // List<User> users = userService.getUsers();
+        // return new ResponseEntity<>(users, HttpStatus.OK);
+        return ResponseEntity.ok().body(userService.getUsers());
     }
 
     @GetMapping("/users/{id}")
@@ -78,7 +80,7 @@ public class UserController {
     @PostMapping("/users/{userId}/follow/{followedUserId}")
     public ResponseEntity<Void> followUser(@PathVariable("userId") String userId,
             @PathVariable("followedUserId") String followedUserId) {
-        userService.followUser(userId, followedUserId);
+        userService.followedUser(userId, followedUserId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

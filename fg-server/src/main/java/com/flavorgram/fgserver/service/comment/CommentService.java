@@ -11,9 +11,15 @@ import org.springframework.stereotype.Service;
 import com.flavorgram.fgserver.model.comment.CommentReply;
 import com.flavorgram.fgserver.dto.comment.CommentReplyRequest;
 import com.flavorgram.fgserver.dto.comment.CommentRequest;
+import com.flavorgram.fgserver.dto.notification.NotifcationRequest;
 import com.flavorgram.fgserver.exception.comment.CommentsNotFoundException;
+import com.flavorgram.fgserver.model.Post.Post;
+import com.flavorgram.fgserver.model.authentication.UserData;
 import com.flavorgram.fgserver.model.comment.Comment;
 import com.flavorgram.fgserver.repository.comment.CommentRepository;
+import com.flavorgram.fgserver.service.Post.PostService;
+import com.flavorgram.fgserver.service.authentication.AuthenticationService;
+import com.flavorgram.fgserver.service.notification.NotificationService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,6 +29,15 @@ public class CommentService {
 
   @Autowired
   CommentRepository commentRepository;
+
+  @Autowired
+  NotificationService notificationService;
+
+  @Autowired
+  AuthenticationService authenticationService;
+
+  @Autowired
+  PostService postService;
 
   public Comment createComment(CommentRequest commentRequest) {
     List<String> emptyList = new ArrayList<String>();
@@ -42,6 +57,22 @@ public class CommentService {
         .build();
 
     commentRepository.save(comment);
+
+    var post_id = comment.getPost();
+    var user_email = comment.getAuthor().getEmail();
+
+    UserData user = authenticationService.getSocialUser(user_email);
+    Post post = postService.getPostById(post_id);
+
+    NotifcationRequest nr = NotifcationRequest.builder()
+        .description(comment.getDescription())
+        .user(post.getUser_id().getId())
+        .post(post)
+        .label(comment.getLabel())
+        .commenter_username(user.getUsername())
+        .build();
+
+    notificationService.saveNotification(nr);
     log.info(String.format("Comment %s saved", comment.getId()));
     return comment;
 
