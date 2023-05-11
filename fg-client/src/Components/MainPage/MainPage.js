@@ -199,9 +199,7 @@ function MainPage() {
 
               <div className="post">
                 <div className="post_header">
-                  <div className="post_username">
-                    {/* {`${item.user_id.username}`} */}thrinith.shevon
-                  </div>
+                  <div className="post_username">{item.user_id.username}</div>
                 </div>
                 <div
                   className="postContainer_post"
