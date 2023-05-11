@@ -81,7 +81,7 @@ const Profile = (props) => {
                         Username : {user.username}
                       </h2>
                       <h2 className="font- text-xl">
-                        Name : {user.firstName + user.lastName}
+                        Name : {user.firstName + " " + user.lastName}
                       </h2>
                       <h2 className="font- text-xl">Bio : {user.bio}</h2>
                     </div>
