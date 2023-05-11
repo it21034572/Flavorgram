@@ -2,6 +2,7 @@ package com.flavorgram.fgserver.service.Post;
 
 import java.util.List;
 
+import org.springframework.hateoas.EntityModel;
 import org.springframework.stereotype.Service;
 
 import com.flavorgram.fgserver.model.Post.Post;
@@ -11,11 +12,12 @@ public interface PostService {
 
     Post createPost(Post post);
 
-    Post updatePost(Post post);
+    Post updatePost(Post status);
 
-    List<Post> getAllPosts();
+    List<EntityModel<Post>> getAllPosts();
 
-    Post getPostById(String postId);
+    Post getPostById(String id);
 
     void deletePost(String Id);
+
 }

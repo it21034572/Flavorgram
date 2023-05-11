@@ -91,6 +91,7 @@ h1 {
   --blue: rgb(0, 92, 221);
   --dark_blue: rgb(0, 72, 172);
   --light_blue: rgb(212, 230, 255);
+  --light_green: rgb(209, 255, 209);
 }
 
 .login_container__form > .link > .link__icon {
