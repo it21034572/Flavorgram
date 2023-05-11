@@ -29,7 +29,7 @@
     max-width: 60px;
     overflow-x: hidden;
     text-align: center;
-    
+    color:black;
 }
 
 .post_reactimage {
@@ -50,31 +50,83 @@
     background-color: #f05d38;
     color: white;
     font-weight: 400;
+    padding: 10px 40px;
     border: 0px;
     height: 40px;
     border-radius: 5px;
 }
 
 .upload_textbox{
-    margin: 20px 40px;
-    border-bottom: rgb(173, 172, 172);
-    border-bottom-style: solid;
-    border-bottom-width: 2px;
+    position: absolute;
+    width: 80%;
+    min-height:fit-content;
+    text-align: center;
+    bottom: 120px;
+    opacity: 0.6;
+    font-weight: 500;
+    color: black;
+    left: 60px;
+    right: 60px;
+    background-color: #e3dedee5;
 }
 
 .upload_preview{
-    padding: 0px 40px;
-    padding-top: 0px;
+    padding: 0px;
+    margin-top: 50px;
+    height: 500px;
+    width: 600px;
+    background-size: cover;
 }
 
 .upload_header{
     font-size: 15px;
+    color: white;
     font-weight: 600;
     text-align: left;
-    margin-left: 20px;
-    margin-top: 20px; 
+    padding: 15px;
+    position: absolute;
+    top: 0px; 
+    width: 100%;
+    min-height: 30px;
+    background-color: rgb(0, 0, 0);
 }
 
 ::-webkit-scrollbar{
     display: none;
+}
+
+.edit_textbox{
+    border-bottom: rgb(173, 172, 172);
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    position: absolute;
+    width: 80%;
+    min-height:fit-content;
+    text-align: center;
+    bottom: 120px;
+    font-weight: 500;
+    background-color: white;
+    color: black;
+    left: 60px;
+    right: 60px;
+}
+
+/* .upload_dialogbox{
+    background-image: url();
+} */
+
+.edit_add_textbox {
+    border-bottom: rgb(173, 172, 172);
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    position: absolute;
+    width: 80%;
+    min-height:fit-content;
+    text-align: center;
+    bottom: 130px;
+    font-weight: 500;
+    background-color: white;
+    color: black;
+    left: 60px;
+    right: 60px;
 }

@@ -152,26 +152,26 @@ function StatusBar() {
     <div>
       <Dialog
         onClose={handleClose}
-        style={{backgroundColor:"black"}}
         aria-labelledby="simple-dialog-title"
         open={show}
       >
-        <div className="upload_header">Add Story</div>
-        <input
-          type="text"
-          className="upload_textbox"
-          placeholder="Enter a caption...."
+        <div className="upload_header" style={{textAlign:"center", fontSize:"20px"}}>Add Story</div>
+        <textarea
+          className="edit_add_textbox"
+          placeholder="Enter a caption...." maxLength="100"
           onChange={(e) => {
             setCaption(e.target.value);
           }}
         />
         <img src={uploadImg} className="upload_preview" />
+        <div style={{backgroundColor:"black", textAlign:"center"}}>
         <input
           type="button"
           value="Share Story"
           className="upload_button"
           onClick={(event) => uploadToFirebase(event)}
         />
+        </div>
       </Dialog>
 
       <div className="statusbar_container">
@@ -199,7 +199,7 @@ function StatusBar() {
           {filteredItems &&
             filteredItems.map((item, index) => (
               <div>           
-                <Link to={`/status/viewOne/${JSON.stringify(item.status_id).replace(/\"/g, '')}`}>
+                <Link to={`/status/viewOne/${JSON.stringify(item.status_id).replace(/\"/g, '')}`} style={{ textDecoration: 'none' }}s>
                   <div className="status">
                     <div
                       className="statusbar_status"
