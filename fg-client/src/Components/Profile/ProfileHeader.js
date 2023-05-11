@@ -183,7 +183,7 @@ export const ProfileHeader = ({ setModal, modal }) => {
           <br />
           <br />
           <button
-            className="bg-blue-600 px-5 py-1 rounded-lg text-white font-semibold"
+            className="bg-red-600 px-5 py-1 rounded-lg text-white font-semibold"
             onClick={() => deleteUser()}
           >
             <i className="bx bx-plus-circle text-xl mr-2"></i>
