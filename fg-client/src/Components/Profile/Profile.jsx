@@ -67,41 +67,33 @@ const Profile = (props) => {
 
           {/* // CONTENT */}
           <div>
-            <div className="bg-gray-100 ">
+            <div className="bg-blue-100 ">
               <div className="flex justify-center h-screen">
                 {/* LEFT */}
                 <div>
                   {/* // INTRO */}
                   <div className="mr-12 mt-4">
                     <div
-                      className="p-4 shadow rounded-lg bg-white w-80"
+                      className="p-4 shadow rounded-lg bg-white w-100"
                       id="intro"
                     >
                       <h1 className="font-bold text-xl">Bio</h1>
+                      <hr/>
                       <h2 className="font- text-xl">
-                        Username : {user.username}
+                        <b>Name :</b> {auth.user.username}
                       </h2>
                       <h2 className="font- text-xl">
-                        Name : {user.firstName + " " + user.lastName}
+                        <b>Name :</b> {user.firstName + " " + user.lastName}
                       </h2>
-                      <h2 className="font- text-xl">Bio : {user.bio}</h2>
+                      <h2 className="font- text-xl">
+                        <b>Bio :</b> {user.bio}
+                      </h2>
                     </div>
                   </div>
                   {/* // END INTRO */}
                 </div>
                 {/* END LEFT */}
 
-                {/* // POST LIST */}
-                <div className="w-2/5">
-                  {/* CREATE POST */}
-
-                  {/* END CREATE POST */}
-
-                  {/* POST */}
-                  <Post />
-                  {/* END POST */}
-                </div>
-                {/* // END POST LIST */}
               </div>
             </div>
           </div>
