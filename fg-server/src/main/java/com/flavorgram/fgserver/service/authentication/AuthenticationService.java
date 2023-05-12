@@ -1,6 +1,7 @@
 package com.flavorgram.fgserver.service.authentication;
 
 import java.security.Principal;
+import java.util.Optional;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,8 +20,10 @@ import com.flavorgram.fgserver.repository.authentication.UserDataRepository;
 import com.flavorgram.fgserver.repository.authentication.UserRepository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class AuthenticationService {
 
@@ -46,12 +49,21 @@ public class AuthenticationService {
         .role(Role.ROLE_USER).build();
 
     userRepository.save(user);
+
+    var savedUser = userRepository.findByEmail(user.getEmail()).orElse(null);
+
+    if (request.getUsername() == null) {
+      request.setUsername(user.getFirstName() + "_" + user.getLastName());
+    }
+
     var userData = UserData.builder()
         .firstname(request.getFirstname())
         .lastname(request.getLastname())
         .email(request.getEmail())
         .interestedCatgories(request.getInterestedCategories())
-        .username(request.getUsername()).build();
+        .username(request.getUsername())
+        .user_id(savedUser.getId())
+        .build();
 
     userDataRepository.save(userData);
 
@@ -81,14 +93,34 @@ public class AuthenticationService {
         .build();
   }
 
-  public UserData getSocialUser(String email) {
-    var user = userDataRepository.findByEmail(email).orElse(null);
-    var u = userRepository.findByEmail(email).orElse(null);
+  public User getUser(String email) {
+    var user = userRepository.findByEmail(email).orElse(null);
+
     if (user == null) {
       throw new UsernameNotFoundException("User with email " + email + " is not registered!");
     }
 
-    user.setUser_id(u.getId());
+    return user;
+  }
+
+  public UserData getSocialUser(String email) {
+    var user = userDataRepository.findByEmail(email).orElse(null);
+    var u = userRepository.findByEmail(email).orElse(null);
+    if (user == null) {
+      throw new UsernameNotFoundException("User with email " + email + " does not exist!");
+    }
+    log.info(user.toString());
+    if (user.getUser_id() == null && u == null) {
+      u = new User();
+      u.setFirstName(user.getFirstname());
+      u.setLastName(user.getLastname());
+      u.setEmail(user.getEmail());
+      u.setRole(Role.ROLE_USER);
+      userRepository.save(u);
+      var savedUser = userRepository.findByEmail(user.getEmail()).orElse(null);
+      user.setUser_id(savedUser.getId());
+      userDataRepository.save(user);
+    }
 
     return user;
   }

@@ -43,7 +43,15 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route exact path="/home" element={<HomePage />} />
+          <Route
+            exact
+            path="/home"
+            element={
+              <RequireAuth>
+                <HomePage />
+              </RequireAuth>
+            }
+          />
 
           <Route
             exact

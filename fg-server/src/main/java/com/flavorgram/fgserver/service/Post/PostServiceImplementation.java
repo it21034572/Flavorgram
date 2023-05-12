@@ -71,7 +71,6 @@ public class PostServiceImplementation implements PostService {
                         .withRel("post"));
                 postWithLink.add(Link.of("http://localhost:8081/post").withRel("update"));
                 postWithLink.add(Link.of("http://localhost:8081/post").withRel("delete"));
-                log.info(postWithLink.toString());
                 postListsWithLinks.add(postWithLink);
 
             }
