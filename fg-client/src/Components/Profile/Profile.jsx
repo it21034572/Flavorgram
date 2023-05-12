@@ -74,7 +74,7 @@ const Profile = (props) => {
                   {/* // INTRO */}
                   <div className="mr-12 mt-4">
                     <div
-                      className="p-4 shadow rounded-lg bg-white w-100"
+                      className="p-4 shadow rounded-lg bg-white w-200"
                       id="intro"
                     >
                       <h1 className="font-bold text-xl">Bio</h1>
