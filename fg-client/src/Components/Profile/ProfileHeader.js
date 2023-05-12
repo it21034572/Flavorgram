@@ -13,9 +13,8 @@ export const ProfileHeader = ({ setModal, modal }) => {
   const [user, setUser] = useState({});
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
-  const [email , setEmail] = useState("");
   const [bio, setBio] = useState("");
-  const [fnInputError, setfnInputError] = useState("");
+  //const [fnInputError, setfnInputError] = useState("");
 
   const auth = useAuth();
   let options = {};
@@ -47,7 +46,6 @@ export const ProfileHeader = ({ setModal, modal }) => {
         setUser(res.data);
         setFirstName(res.data.firstName);
         setLastName(res.data.lastName);
-        setEmail(res.data.email);
         setBio(res.data.bio);
 
         console.log("Profile: " + auth.user.user_id);
@@ -62,7 +60,6 @@ export const ProfileHeader = ({ setModal, modal }) => {
     const newUserDetails = {
       firstName: firstname,
       lastName: lastname,
-      email: email,
       bio: bio,
     };
 
@@ -103,16 +100,6 @@ export const ProfileHeader = ({ setModal, modal }) => {
       });
   }
 
-  function firstNamehandleInputChange(e) {
-    setFirstName(e.target.value);
-
-    if(e.target.value.trim() === ""){
-      setfnInputError("Cannot be empty");
-    } else{
-      setfnInputError("");
-    }
-  }
-
   return (
     <div>
       <Modal size="lg" isOpen={modal} toggle={() => setModal(!modal)}>
@@ -148,19 +135,6 @@ export const ProfileHeader = ({ setModal, modal }) => {
               </Col>
               <Col lg={12}>
                 <div>
-                  <label htmlFor="profilePicture">Profile Picture</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </div>
-                <br />
-              </Col>
-              <Col lg={12}>
-                <div>
                   <label htmlFor="bio">Bio</label>
                   <input
                     type="text"
@@ -183,7 +157,7 @@ export const ProfileHeader = ({ setModal, modal }) => {
           <br />
           <br />
           <button
-            className="bg-blue-600 px-5 py-1 rounded-lg text-white font-semibold"
+            className="bg-red-600 px-5 py-1 rounded-lg text-white font-semibold"
             onClick={() => deleteUser()}
           >
             <i className="bx bx-plus-circle text-xl mr-2"></i>
@@ -198,7 +172,7 @@ export const ProfileHeader = ({ setModal, modal }) => {
       >
         <div className="flex flex-col">
         <div
-            className="md:relative bg-yellow-100 md:rounded-bl-lg md:rounded-br-lg
+            className="md:relative bg-blue-300 md:rounded-bl-lg md:rounded-br-lg
                       bg-blue-300"
             style={{ width: "940px", height: "300px" }}
           >
