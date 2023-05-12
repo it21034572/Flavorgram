@@ -21,6 +21,7 @@ export default function Comment({
   postId,
   commentResourceLink,
   postAuthor,
+  postTitle,
 }) {
   const cookies = new Cookie();
   const [comments, setComments] = useState([]);
@@ -69,7 +70,7 @@ export default function Comment({
   async function getPostComments() {
     setGetLoading(true);
     await axios
-      .get(commentResourceLink, options)
+      .get(commentResourceLink + "?post=" + postId, options)
       .then((res) => {
         setComments([...res.data]);
         setCommentsBackup([...res.data]);
@@ -308,6 +309,7 @@ export default function Comment({
           setFilter={setFilter}
           setSort={setSort}
           setOwnComments={setOwnComments}
+          postTitle={postTitle}
         />
         <ul className="comment_container__comments">
           {comments.map((c) => (
@@ -484,6 +486,11 @@ export default function Comment({
               )}
             </li>
           ))}
+          {(comments.length === 0) & !getLoading ? (
+            <li className="comment_container__comments_user_comment">
+              No Comments
+            </li>
+          ) : null}
         </ul>
 
         <CommentCreator

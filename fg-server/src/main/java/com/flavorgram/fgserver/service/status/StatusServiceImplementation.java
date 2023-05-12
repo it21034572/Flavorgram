@@ -71,7 +71,7 @@ public class StatusServiceImplementation implements StatusService {
                         .withRel("status"));
                 statusWithLink.add(Link.of("http://localhost:8081/status").withRel("update"));
                 statusWithLink.add(Link.of("http://localhost:8081/status").withRel("delete"));
-                log.info(statusWithLink.toString());
+
                 statusListsWithLinks.add(statusWithLink);
 
             }

@@ -7,6 +7,7 @@ export default function FIlterComments({
   setSort,
   setLikedComments,
   setOwnComments,
+  postTitle,
 }) {
   const reactions = {
     drool: "🤤 Looks Yummy",
@@ -16,7 +17,7 @@ export default function FIlterComments({
   return (
     <div className="comment_container__search">
       <div className="comment_container__search__header">
-        <h2>Post Title</h2>
+        <h2>{postTitle}</h2>
       </div>
       <div>
         <input

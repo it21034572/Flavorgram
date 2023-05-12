@@ -43,12 +43,15 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route 
-            exact path="/home" 
+          <Route
+            exact
+            path="/home"
             element={
-            <HomePage />
+              <RequireAuth>
+                <HomePage />
+              </RequireAuth>
             }
-           />
+          />
 
           <Route
             exact
@@ -108,50 +111,39 @@ function App() {
             }
           />
 
-          <Route 
-            exact path="/messenger/editMessage/:id"  
+          <Route
+            exact
+            path="/messenger/editMessage/:id"
             element={
-            <RequireAuth>
-              <MessageEdit />
-            </RequireAuth>
+              <RequireAuth>
+                <MessageEdit />
+              </RequireAuth>
             }
-           />
-
-          <Route 
-          exact path="/profile" 
-          element={
-          <RequireAuth>
-            <Profile />
-          </RequireAuth>
-          }
           />
 
-          <Route 
-            exact path="/post" 
+          <Route
+            exact
+            path="/profile"
             element={
-            <Profile />
-          } 
+              <RequireAuth>
+                <Profile />
+              </RequireAuth>
+            }
           />
 
-          <Route 
-          exact path="/status/viewOne/:id" 
-          element={
-          <StatusPreview />
-          } />
+          <Route
+            exact
+            path="/post"
+            element={
+              <RequireAuth>
+                <Profile />
+              </RequireAuth>
+            }
+          />
 
-          <Route 
-            exact path="/status/update/:id" 
-            element={
-            <StatusUpdate />
-            } />
-          
-          <Route 
-            exact 
-            path="/post" 
-            element={
-            <Profile />
-            } />
-           
+          <Route exact path="/status/viewOne/:id" element={<StatusPreview />} />
+
+          <Route exact path="/status/update/:id" element={<StatusUpdate />} />
         </Routes>
       </div>
       <ToastContainer

@@ -105,10 +105,20 @@
 .post_footer {
   height: 60px;
   border-bottom: 1px solid #dbdbdb;
-  display: flex;
+  display: grid;
+  grid-template-columns: 80% 10% 10%;
+  align-items: start;
+  justify-content: center;
+}
+
+.post_comment {
+  padding: 0.7rem;
+  font-size: 1.7em;
+  margin: auto;
 }
 
 .post_caption {
   margin-top: 20px;
   margin-left: 20px;
+  text-align: left;
 }
