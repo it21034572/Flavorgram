@@ -13,8 +13,9 @@ export const ProfileHeader = ({ setModal, modal }) => {
   const [user, setUser] = useState({});
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
-  const [username, setUserName] = useState("");
+  const [email , setEmail] = useState("");
   const [bio, setBio] = useState("");
+  const [fnInputError, setfnInputError] = useState("");
 
   const auth = useAuth();
   let options = {};
@@ -46,7 +47,7 @@ export const ProfileHeader = ({ setModal, modal }) => {
         setUser(res.data);
         setFirstName(res.data.firstName);
         setLastName(res.data.lastName);
-        setUserName(res.data.username);
+        setEmail(res.data.email);
         setBio(res.data.bio);
 
         console.log("Profile: " + auth.user.user_id);
@@ -61,7 +62,7 @@ export const ProfileHeader = ({ setModal, modal }) => {
     const newUserDetails = {
       firstName: firstname,
       lastName: lastname,
-      username: username,
+      email: email,
       bio: bio,
     };
 
@@ -102,6 +103,16 @@ export const ProfileHeader = ({ setModal, modal }) => {
       });
   }
 
+  function firstNamehandleInputChange(e) {
+    setFirstName(e.target.value);
+
+    if(e.target.value.trim() === ""){
+      setfnInputError("Cannot be empty");
+    } else{
+      setfnInputError("");
+    }
+  }
+
   return (
     <div>
       <Modal size="lg" isOpen={modal} toggle={() => setModal(!modal)}>
@@ -117,6 +128,7 @@ export const ProfileHeader = ({ setModal, modal }) => {
                     className="form-control"
                     value={firstname}
                     onChange={(e) => setFirstName(e.target.value)}
+                    required = "required"
                   />
                 </div>
                 <br />
@@ -129,18 +141,20 @@ export const ProfileHeader = ({ setModal, modal }) => {
                     className="form-control"
                     value={lastname}
                     onChange={(e) => setLastName(e.target.value)}
+                    required = "required"
                   />
                 </div>
                 <br />
               </Col>
               <Col lg={12}>
                 <div>
-                  <label htmlFor="username">Username</label>
+                  <label htmlFor="profilePicture">Profile Picture</label>
                   <input
                     type="text"
                     className="form-control"
-                    value={username}
-                    onChange={(e) => setUserName(e.target.value)}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
                   />
                 </div>
                 <br />
@@ -183,9 +197,9 @@ export const ProfileHeader = ({ setModal, modal }) => {
         style={{ height: "348px" }}
       >
         <div className="flex flex-col">
-          <div
-            className="md:relative bg-gray-100 md:rounded-bl-lg md:rounded-br-lg
-                        bg-gradient-to-b from-gray-100 via-gray-100 to-gray-400"
+        <div
+            className="md:relative bg-yellow-100 md:rounded-bl-lg md:rounded-br-lg
+                      bg-blue-300"
             style={{ width: "940px", height: "300px" }}
           >
             {/* // cover photo */}
@@ -205,9 +219,6 @@ export const ProfileHeader = ({ setModal, modal }) => {
         <h1 className="text-center font-bold text-3xl">
           {firstname + " " + lastname}
         </h1>
-        <a href="#" className="text-center text-blue-700 font-semibold">
-          Add Bio
-        </a>
         <hr className="full flex self-center w-2/3 mt-2" />
       </div>
       {/* // END INFOS */}
