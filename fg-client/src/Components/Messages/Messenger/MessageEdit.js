@@ -5,6 +5,7 @@ import { useAuth } from "../../Authentication/auth";
 import Cookies from "universal-cookie";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Dialog ,DialogActions,DialogTitle,DialogContentText, DialogContent,Button,TextField } from "@material-ui/core";
+import { IoCloseCircleSharp } from "react-icons/io5";
 
 
 function MessageEdit() {
@@ -15,6 +16,7 @@ function MessageEdit() {
   var [sender, setSender] = useState("");
   const [message, setMessage] = useState("");
   const [sentDate, setSentDate] = useState("");
+  const [oldMessage, setOldMessage] = useState("");
 
   var currentDate = new Date().toISOString();
 
@@ -47,6 +49,7 @@ function MessageEdit() {
       setSender(res.data.sender);
       setMessage(res.data.message);
       setSentDate(res.data.sentDate);
+      setOldMessage(res.data.message);
 
       console.log("Status: " + message.message_id);
 
@@ -91,9 +94,9 @@ function MessageEdit() {
     <div >
       <Dialog open={true} >
         <DialogTitle>Edit Message</DialogTitle>
-        <button onClick={() => goBack()}><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRQeV7P3xoHW_Yc4bNp0B5kXCOmuSbxdck1Q&usqp=CAU"
-        style={{width:"40px", height:"40px", position:"absolute", top:"20px", right:"40px"}}
-        /></button>
+        <button onClick={() => goBack()}
+        style={{fontSize:"40px", position:"absolute", top:"10px", right:"10px"}} >
+        <IoCloseCircleSharp /></button>
         <DialogContent>
           <DialogContentText>
             Edit your message with a new message to send
@@ -111,7 +114,7 @@ function MessageEdit() {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => editMessage(id)}>Edit</Button>
+          <Button onClick={() => editMessage(id)} className={message.trim().length === 0 ? 'edit-disabled-button' : ''} disabled={message.trim().length === 0}>Edit</Button>
         </DialogActions>
       </Dialog>
     </div>

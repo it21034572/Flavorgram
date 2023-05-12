@@ -19,6 +19,8 @@ const Messenger = () => {
   const scrollRef = useRef();
   const [oneMessage, setOneMessage] = useState([]);
   const [editedMsg, setEditedMesg] = useState("");
+  const [disable,setDisable] = useState(true);
+  
   const navigate = useNavigate();
 
   if (!auth.social) {
@@ -108,6 +110,12 @@ const Messenger = () => {
     navigate("/home");
   };
 
+  
+
+  const setChatMessage = (value) => {
+    setNewMessage(value);
+  }
+
   return (
     <>
       <NavBar />
@@ -165,10 +173,11 @@ const Messenger = () => {
               <textarea
                 className="chatMessageInput"
                 placeholder="Enter a message..."
-                onChange={(e) => setNewMessage(e.target.value)}
+                onChange={(e) => setChatMessage(e.target.value)}
                 value={newMessage}
               />
-              <button className="chatSubmitButton" onClick={submitMessage}>
+              <button className={newMessage.trim().length === 0 ? 'disabled-button' : 'chatSubmitButton'} disabled={newMessage.trim().length === 0}
+              onClick={submitMessage}>
                 <FaPaperPlane />
               </button>
             </div>

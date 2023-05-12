@@ -42,6 +42,7 @@ const Chat = ({ chat, own }) => {
           
         </p>
       </div>
+      <div className="chatBottom">{chat.sender.username}</div>
       <div className="chatBottom">{format(chat.sentDate)}</div>
     </div>
   );

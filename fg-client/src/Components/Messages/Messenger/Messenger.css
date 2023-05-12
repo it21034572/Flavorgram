@@ -77,6 +77,17 @@
     padding: 15px;
 }
 
+.disabled-button{
+    width:fit-content;
+    height: fit-content;
+    border: none;
+    border-radius: 30px;
+    background-color: teal;
+    color: white;
+    padding: 15px;
+    cursor: not-allowed;
+}
+
 .chatOnline{
     flex: 0;
     overflow-y: scroll;
@@ -92,4 +103,8 @@
     color:white;
     padding: 10px;
     margin-right: 340px;
+}
+
+.edit-disabled-button{
+    cursor: not-allowed;
 }
